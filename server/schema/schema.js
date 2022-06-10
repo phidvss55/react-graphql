@@ -108,6 +108,13 @@ const Mutation = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve(parent, args) {
+        // cascade project detele
+        Project.find({ clientId: args.id }).then((projects) => {
+          projects.forEach((project) => {
+            Project.remove();
+          });
+        });
+
         return Client.findByIdAndRemove(args.id);
       },
     },
