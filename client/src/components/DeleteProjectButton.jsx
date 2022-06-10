@@ -18,8 +18,8 @@ export default function DeleteProjectButton({ id }) {
 
   return (
     <div>
-      <div className="d-flex-mt-5 ms-auto">
-        <button className="btn btn-danger m-2" onClick={deleteProject}>
+      <div className="d-flex mt-5 ms-auto">
+        <button className="btn btn-danger ml-2" onClick={deleteProject}>
           <FaTrash className="icon" /> Delete Project
         </button>
       </div>

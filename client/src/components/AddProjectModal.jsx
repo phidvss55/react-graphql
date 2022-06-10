@@ -12,7 +12,7 @@ export default function AddProjectModal() {
   const [status, setStatus] = React.useState('NEW')
   const [errorMsg, setErrorMsg] = React.useState('')
 
-  const { loading, error, data } = useQuery(GET_CLIENTS)
+  const { loading, data } = useQuery(GET_CLIENTS)
 
   const [addProject] = useMutation(ADD_PROJECT, {
     variables: { name, description, status, clientId },

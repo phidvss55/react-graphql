@@ -4,9 +4,14 @@ import { GET_PROJECT } from '../queries/projectQueries'
 import { UPDATE_PROJECT } from '../mutations/projectMutation'
 
 export default function EditProjectForm({ project }) {
-  const [name, setName] = React.useState('')
-  const [description, setDescription] = React.useState('')
-  const [status, setStatus] = React.useState('NEW')
+  const [name, setName] = React.useState(project.name)
+  const [description, setDescription] = React.useState(project.description)
+  const [status, setStatus] = React.useState('')
+
+  if (project.status) {
+    let status = project.status.toUpperCase().replace(' ', '_')
+    setStatus(status)
+  }
 
   const [updateProject] = useMutation(UPDATE_PROJECT, {
     variables: { id: project.id, name, description, status },
@@ -56,9 +61,9 @@ export default function EditProjectForm({ project }) {
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option value='new'>Not Started</option>
-            <option value='progress'>In Progress</option>
-            <option value='completed'>Completed</option>
+            <option value='NEW'>Not Started</option>
+            <option value='IN_PROGRESS'>In Progress</option>
+            <option value='COMPLETED'>Completed</option>
           </select>
         </div>
 
